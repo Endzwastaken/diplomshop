@@ -1,0 +1,6 @@
+#ide stuff
+.idea
+
+#django stuff
+db.sqlite3
+media/
