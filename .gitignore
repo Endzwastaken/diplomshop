@@ -5,8 +5,6 @@
 db.sqlite3
 media/
 catalog/static/catalog/img
-base/__pycache__
-main/__pycache__
-catalog/__pycache__
+*.pyc
 
 favicon.ico
