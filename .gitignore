@@ -4,7 +4,9 @@
 #django stuff
 db.sqlite3
 media/
-/base/__pycache__
-/main/__pycache__
+catalog/static/catalog/img
+base/__pycache__
+main/__pycache__
+catalog/__pycache__
 
 favicon.ico

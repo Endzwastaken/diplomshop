@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'catalog/product.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main class="main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="{% static 'catalog/img/gigabyte_rtx_3080_ti.png' %}" alt>
+                </div>
+                <div class="col-md-7">
+                    <div class="row">
+                        <p class="name-of-product"><b>Gigabyte Geforce RTX 3080ti</b></p>
+                    </div>
+                    <div class="row">
+                        <p>id: 001</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
