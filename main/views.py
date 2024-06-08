@@ -1,7 +1,8 @@
-from django.http import HttpResponse
 from django.shortcuts import render
+from catalog.models import Categories
 
 def index(request):
+    categories = Categories.objects.all()
     context = {
         'title': 'Главная',
         'content': 'Здравствуйте! '
@@ -9,6 +10,7 @@ def index(request):
                    'У нас вы можете приобрести компьютеры, комплектующие и аксессуары к ним. '
                    'Так же вы можете собрать конфигурацию комьютера на нашем сайте. '
                    'Если у вас возникнут вопросы, наши консультанты с радостью помогут вам. Приятных покупок!',
+        'categories': categories
     }
     return render(request, 'main/index.html', context)
 

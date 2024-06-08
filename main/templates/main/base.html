@@ -29,14 +29,9 @@
 									Каталог
 								</a>
 								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="{% url 'catalog:mainpage' %}">Все товары</a></li>
-									<li><a class="dropdown-item" href="{% url 'catalog:mainpage' %}">Процессоры</a></li>
-									<li><a class="dropdown-item" href="{% url 'catalog:mainpage' %}">Материнские платы</a></li>
-									<li><a class="dropdown-item" href="{% url 'catalog:mainpage' %}">Видеокарты</a></li>
-									<li><a class="dropdown-item" href="{% url 'catalog:mainpage' %}">Оперативная память</a></li>
-									<li><a class="dropdown-item" href="{% url 'catalog:mainpage' %}">Блоки питания</a></li>
-									<li><a class="dropdown-item" href="{% url 'catalog:mainpage' %}">Устройства хранения</a></li>
-									<li><a class="dropdown-item" href="{% url 'catalog:mainpage' %}">Корпуса</a></li>
+                                    {% for category in categories %}
+									    <li><a class="dropdown-item" href="{% url 'catalog:mainpage' %}">{{ category.name }}</a></li>
+                                    {% endfor %}
 								</ul>
 							</div>
 							<div class="col-md-auto">
