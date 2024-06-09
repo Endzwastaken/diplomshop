@@ -10,20 +10,30 @@
     <main class="main">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-5">
-                    <img src="{% static 'catalog/img/gigabyte_rtx_3080_ti.png' %}" alt>
+                <div class="col-md-3">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="продукт">
+                    {% else %}
+                        <img src="{% static 'catalog\img\image_not_found.png' %}" alt="продукт">
+                    {% endif %}
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-7">
                     <div class="row">
-                        <p class="name-of-product"><b>Gigabyte Geforce RTX 3080ti</b></p>
+                        <p class="name-of-product"><b>{{ product.name }}</b></p>
                     </div>
                     <div class="row">
-                        <p>id: 001</p>
+                        <p>id: {{ product.display_id }}</p>
                     </div>
                 </div>
                 <div class="col-md-2 d-flex text-center align-items-center">
                     <div class="row">
-                        <p>10000₽</p>
+                        {% if product.sell_price != product.price %}
+                            <span class="badge btn-dark text-dark"> Скидка {{ product.discount }}%</span>
+                            <p><s>{{ product.price}}</s> ₽</p>
+                            <p>{{ product.sell_price}} ₽</p>
+                        {% else %}
+                            <p>{{ product.sell_price}} ₽</p>
+                        {% endif %}
                         <a class="btn btn-outline-dark" href="#">
                             Купить
                         </a>
