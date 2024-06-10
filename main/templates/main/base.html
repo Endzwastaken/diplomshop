@@ -78,8 +78,8 @@
 				</div>
 				<hr>
 				<div class="header-bottom">
-					<form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+					<form class="d-flex" action="{% url 'catalog:search'  %}" method="GET" role="search">
+                        <input class="form-control me-2" name="q" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-dark" type="submit">Поиск</button>
                     </form>
 				</div>

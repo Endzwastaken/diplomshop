@@ -13,10 +13,12 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3 " id="filter">
-                    <form class="form" action="{% url 'catalog:mainpage' slug_url %}" method="get" >
+                    <form class="form" action="{% if request.GET.q %}{% url 'catalog:search' %}{% else %}{% url 'catalog:mainpage' slug_url %}{% endif %}" method="get" >
                         <div class="form-check m-3">
                             <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault" value="on" {% if request.GET.on_sale == 'on' %}checked{% endif %}>
-                            {% comment %}<input type="hidden" name="q" value="request.GET.q"> {% endcomment %}
+                            {% if request.GET.q %}
+                                <input type="hidden" name="q" value="request.GET.q">
+                            {% endif %}
                             <label class="form-check-label" for="flexCheckDefault">
                                 Товары только по акции
                             </label>

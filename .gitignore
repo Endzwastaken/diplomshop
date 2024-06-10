@@ -6,5 +6,6 @@ db.sqlite3
 media/
 catalog/static/catalog/img
 *.pyc
+fixtures
 
 favicon.ico
