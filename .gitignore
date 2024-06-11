@@ -7,6 +7,6 @@ media/
 catalog/static/catalog/img
 *.pyc
 fixtures
-users/static/catalog/img
+/users/static/users/img
 
 favicon.ico

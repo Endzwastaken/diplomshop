@@ -1,4 +1,4 @@
-{% extends 'main/base.html' %}
+{% extends 'base.html' %}
 
 {% load static %}
 
@@ -29,7 +29,7 @@
                     <div class="row">
                         {% if product.sell_price != product.price %}
                             <span class="badge btn-dark text-dark"> Скидка {{ product.discount }}%</span>
-                            <p><s>{{ product.price}}</s> ₽</p>
+                            <p class="opacity-50"><s>{{ product.price}}</s> ₽</p>
                             <p>{{ product.sell_price}} ₽</p>
                         {% else %}
                             <p>{{ product.sell_price}} ₽</p>
