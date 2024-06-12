@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 
 class Categories(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name='Название')
@@ -29,8 +31,10 @@ class Products(models.Model):
         ordering = ['id',]
 
     def __str__(self):
-        return f'{self.name} | Количество {self.quantity}'
+        return self.name
 
+    def get_absolute_url(self):
+        return reverse('catalog:product', kwargs={'product_slug': self.slug})
     def display_id(self):
         return f'{self.id:05}'
 
