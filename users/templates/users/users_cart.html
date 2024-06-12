@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load carts_tags %}
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'users/users_cart.css' %}">
@@ -13,11 +14,12 @@
                 <h3 class="text-center mb-4">Корзина</h3>
                 <div class="container" id="cart-items-container">
                     <!-- Разметка корзины -->
+                    {% user_carts request as carts %}
                     {% include 'carts/includes/included_cart.html' %}
                     <!-- Закончилась разметка корзины -->
                 </div>
                 {% if carts %}
-                    <a class="btn btn-outline-dark" href="../orders/create_order.html">
+                    <a class="btn btn-outline-dark" href="{% url 'order:create_order' %}">
                         Оформить заказ
                     </a>
                 {% endif %}
