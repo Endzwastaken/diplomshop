@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load catalog_tags %}
+{% load carts_tags %}
 
 {% load static %}
 
@@ -9,11 +10,47 @@
 {% endblock %}
 
 {% block content %}
+    {% user_carts request as carts %}
     <main class="main">
         <div class="container-fluid">
             <div class="row">
+                <!-- Разметка модального окна корзины -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body md-8">
+                                <h3 class="text-center mb-7">Корзина</h3>
+                                <div class="container" id="cart-items-container">
+                                    <!-- Разметка корзины -->
+                                    {% include 'carts/includes/included_cart.html' %}
+                                    <!-- Закончилась разметка корзины -->
+                                </div>
+                                {% if carts %}
+                                    <a class="btn btn-outline-dark" href="../orders/create_order.html">
+                                        Оформить заказ
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Закончилась разметка модального окна -->
+            </div>
+            <div class="row">
                 <div class="col-md-3 " id="filter">
                     <form class="form" action="{% if request.GET.q %}{% url 'catalog:search' %}{% else %}{% url 'catalog:mainpage' slug_url %}{% endif %}" method="get" >
+                    <div class="form">
+                        <button type="button" class="btn btn-dark d-flex align-items-center" id="modalButton" aria-expanded="false">
+                            <img class="mx-1" src="{% static 'carts/img/basket.svg' %}" alt="Catalog Icon" width="24"
+                                height="24">
+                            <span id="goods-in-cart-count">{{ carts.total_quantity }}</span>
+                        </button>
+                    </div>
                         <div class="form-check m-3">
                             <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault" value="on" {% if request.GET.on_sale == 'on' %}checked{% endif %}>
                             {% if request.GET.q %}
@@ -74,7 +111,8 @@
                                             {% endif %}
                                         </div>
                                         <div class="row">
-                                            <a class="btn btn-outline-dark" href="#">
+                                            <a class="btn btn-outline-dark add-to-cart" data-product-id="{{ product.id }}" href="{% url 'cart:cart_add'%}">
+                                                {% csrf_token %}
                                                 Купить
                                             </a>
                                         </div>

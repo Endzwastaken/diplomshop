@@ -8,6 +8,10 @@ body {
     font-family: 'Inter';
 }
 
+#wrapper {
+    align-items: center;
+}
+
 .wrapper {
     min-height: 100%;
     display: flex;
@@ -15,8 +19,9 @@ body {
     padding: 2% 5% 0% 5%;
 }
 
-main.main {
-    align-items:flex-start;
+.name-of-product {
+    color: inherit;
+    text-decoration: none;
 }
 
 .navbar-brand {
@@ -36,26 +41,3 @@ main.main {
     background: rgb(246, 243, 243);
     padding: 10px;
 }
-
-.name-of-product {
-    color: inherit;
-    text-decoration: none;
-}
-
-img {
-    width: 100%;
-}
-
-#filter {
-    align-items:flex-start;
-}
-
-.product-card {
-    align-items:flex-start;
-}
-
-.form {
-    position:sticky;
-    top:20px;
-}
-

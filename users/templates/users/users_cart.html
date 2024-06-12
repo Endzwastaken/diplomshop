@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'users/users_cart.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main class="main">
+        <div class="col-md-12">
+            <div class=" bg-white p-4 mb-4 mx-2 rounded">
+                <h3 class="text-center mb-4">Корзина</h3>
+                <div class="container" id="cart-items-container">
+                    <!-- Разметка корзины -->
+                    {% include 'carts/includes/included_cart.html' %}
+                    <!-- Закончилась разметка корзины -->
+                </div>
+                {% if carts %}
+                    <a class="btn btn-outline-dark" href="../orders/create_order.html">
+                        Оформить заказ
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -34,7 +34,8 @@
                         {% else %}
                             <p>{{ product.sell_price}} ₽</p>
                         {% endif %}
-                        <a class="btn btn-outline-dark" href="#">
+                        <a class="btn btn-outline-dark add-to-cart" data-product-id="{{ product.id }}" href="{% url 'cart:cart_add' %}">
+                            {% csrf_token %}
                             Купить
                         </a>
                     </div>

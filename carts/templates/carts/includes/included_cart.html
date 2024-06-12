@@ -1,0 +1,60 @@
+{% load static %}
+{% load carts_tags %}
+
+{% user_carts request as carts %}
+
+<div class="card md-7">
+    {% for cart in carts %}
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-3">
+                    {% if cart.product.image %}
+                        <img src="{{ cart.product.image.url }}" alt="продукт" style="width: 100%;height: 100%;">
+                    {% else %}
+                        <img src="{% static 'catalog\img\image_not_found.png' %}" alt="продукт" style="width: 100%;height: 100%;">
+                    {% endif %}
+                </div>
+                <div class="col-md-9">
+                    <h6 class="card-title">{{ cart.product.name }}</h6>
+                </div>
+            </div>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div class="row text-center" style="align-items: center;">
+                    <div class="col p-0">
+                        <div class="input-group" style="align-items: center;">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-outline-dark btn-sm decrement"
+                                    data-cart-id="{{ cart.id }}" data-cart-change-url="{% url 'cart:cart_change' %}">
+                                    {% csrf_token %}-</button>
+                            </span>
+                            <input type="text" class="form-control number" value="{{ cart.quantity }}"
+                                readonly>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-outline-dark btn-sm increment"
+                                    data-cart-id="{{ cart.id }}" data-cart-change-url="{% url 'cart:cart_change' %}">
+                                    {% csrf_token %}+</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col p-0">x {{ cart.product.sell_price }} =</div>
+                    <div class="col p-0"><strong>{{ cart.products_price }} ₽</strong></div>
+                    <div class="col p-0">
+                        <a href="{% url 'cart:cart_remove' %}" class="remove-from-cart" data-cart-id="{{ cart.id }}">
+                            {% csrf_token %}
+                            <img class="mx-1" src="{% static 'users/img/garbage.svg' %}"
+                                alt="Catalog Icon" width="24" height="24">
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    {% endfor %}
+</div>
+<div class="card mb-3">
+    <div class="card-footer">
+        <p class="float-left">Итого <strong>{{ carts.total_quantity }}</strong> товар(а) на сумму</p>
+        <h4 class="float-left"><strong>{{ carts.total_price}} ₽</strong></h4>
+    </div>
+</div>
