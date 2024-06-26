@@ -1,10 +1,10 @@
 from carts.models import Cart
 
-
+# функция для получения товаров корзины пользователя
 def get_user_carts(request):
     if request.user.is_authenticated:
-        return Cart.objects.filter(user=request.user).select_related('product')
+        return Cart.objects.filter(user=request.user).order_by('id').select_related('product')
 
     if not request.session.session_key:
         request.session.create()
-    return Cart.objects.filter(session_key=request.session.session_key).select_related('product')
+    return Cart.objects.filter(session_key=request.session.session_key).order_by('id').select_related('product')

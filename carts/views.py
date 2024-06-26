@@ -57,14 +57,14 @@ def cart_change(request):
     cart.quantity = quantity
     cart.save()
 
-    cart = get_user_carts(request)
+    user_cart = get_user_carts(request)
+
     cart_items_html = render_to_string(
-        "carts/includes/included_cart.html", {"carts": cart}, request=request)
+        "carts/includes/included_cart.html", {"carts": user_cart}, request=request)
 
     response_data = {
         "message": "Количество изменено",
         "cart_items_html": cart_items_html,
-        "quantity": cart.quantity,
     }
 
     return JsonResponse(response_data)

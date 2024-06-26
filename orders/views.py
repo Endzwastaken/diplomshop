@@ -19,7 +19,7 @@ def create_order(request):
                     cart_items = Cart.objects.filter(user=user)
 
                     if cart_items.exists():
-                        # Создать заказ
+                        # Создаём заказ
                         order = Order.objects.create(
                             user=user,
                             phone_number=form.cleaned_data['phone_number'],
@@ -27,7 +27,7 @@ def create_order(request):
                             delivery_address=form.cleaned_data['delivery_address'],
                             payment_on_get=form.cleaned_data['payment_on_get'],
                         )
-                        # Создать заказанные товары
+                        # Создаём заказанные товары
                         for cart_item in cart_items:
                             product = cart_item.product
                             name = cart_item.product.name
@@ -48,14 +48,14 @@ def create_order(request):
                             product.quantity -= quantity
                             product.save()
 
-                        # Очистить корзину пользователя после создания заказа
+                        # Очищаем корзину пользователя после создания заказа
                         cart_items.delete()
 
                         messages.success(request, 'Заказ оформлен!')
                         return redirect('user:profile')
             except ValidationError as e:
                 messages.success(request, str(e))
-                return redirect('cart:order')
+                return redirect('order:create_order')
     else:
         initial = {
             'first_name': request.user.first_name,

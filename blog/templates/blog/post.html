@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'blog/post.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main class="main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="row d-flex justify-content-between">
+                    <div class="d-flex justify-content-between"><h2><b>{{ post.title }}</b></h2>
+                        <div>
+                            <div><b>Дата публикации: </b>{{ post.created_timestamp }}</div>
+                            {% if post.edited_timestamp %}
+                                <div><b>Дата редактирования: </b>{{ post.edited_timestamp }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <br><br><br>
+                <div class="row">
+                    <p>{{ post.display_content }}</p>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

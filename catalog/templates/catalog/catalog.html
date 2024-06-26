@@ -30,11 +30,6 @@
                                     {% include 'carts/includes/included_cart.html' %}
                                     <!-- Закончилась разметка корзины -->
                                 </div>
-                                {% if carts %}
-                                    <a class="btn btn-outline-dark" href="{% url 'order:create_order' %}">
-                                        Оформить заказ
-                                    </a>
-                                {% endif %}
                             </div>
                         </div>
                     </div>

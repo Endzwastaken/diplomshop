@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'blog/blog.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main class="main">
+        <div class="container-fluid">
+            <div class="row">
+                {% for post in posts %}
+                    <div class="row">
+                        <div class="product-card m-2">
+                            <div class="row">
+                                <a class="name-of-product" href="{% url 'blog:post' post.id %}"><h3><b>{{ post.title }}</b></h3></a>
+                                <p><b>Категория:</b> {{ post.category }}</p>
+                                <p><b>Описание:</b> {{ post.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+    <!-- Пагинация -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center my-4">
+            <div class="d-flex">
+                <li class="page-item {% if not posts.has_previous %}disabled{% endif %}">
+                  <a class="page-link" href="{% if posts.has_previous %}?{{ posts.previous_page_number }}{% else %}#{% endif %}">Previous</a>
+                </li>
+                {% for page in posts.paginator.page_range %}
+                    {% if page >= posts.number|add:'-2' and page <= posts.number|add:'2' %}
+                        <li class="page-item {% if posts.number == page %} disabled {% endif %}">
+                            <a class="page-link" href="?{{ page }}">{{ page }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                <li class="page-item {% if not posts.has_next %}disabled{% endif %}">
+                  <a class="page-link" href="{% if posts.has_next %}?{{ posts.next_page_number }}{% else %}#{% endif %}">Next</a>
+                </li>
+            </div>
+        </ul>
+    </nav>
+{% endblock %}

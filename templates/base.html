@@ -42,13 +42,8 @@
 								</a>
 							</div>
 							<div class="col-md-auto">
-								<a class="btn btn-outline-dark" href="#">
+								<a class="btn btn-outline-dark" href="{% url 'blog:mainpage' %}">
 									Блог о компьютерах
-								</a>
-							</div>
-							<div class="col-md-auto">
-								<a class="btn btn-outline-dark" href="#">
-									Конфигуратор
 								</a>
 							</div>
                             {% if not user.is_authenticated %}

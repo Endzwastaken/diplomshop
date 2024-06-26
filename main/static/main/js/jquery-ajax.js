@@ -188,25 +188,6 @@ $(document).ready(function () {
         }, 3000);
     }
 
-
-    // Берем из разметки элемент по id - оповещения от django
-    var notification = $('#notification');
-    // И через 7 сек. убираем
-    if (notification.length > 0) {
-        setTimeout(function () {
-            notification.alert('close');
-        }, 3000);
-    }
-
-    // Берем из разметки элемент по id - оповещения от django
-    var notification = $('#notification');
-    // И через 7 сек. убираем
-    if (notification.length > 0) {
-        setTimeout(function () {
-            notification.alert('close');
-        }, 3000);
-    }
-
     // При клике по значку корзины открываем всплывающее(модальное) окно
     $('#modalButton').click(function () {
         $('#exampleModal').appendTo('body');

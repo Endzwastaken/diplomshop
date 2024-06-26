@@ -22,10 +22,13 @@
                         <p class="name-of-product"><b>{{ product.name }}</b></p>
                     </div>
                     <div class="row">
-                        <p>id: {{ product.display_id }}</p>
+                        <p><b>id: </b>{{ product.display_id }}</p>
+                    </div>
+                    <div class="row">
+                        <p><b>Описание: </b>{{ product.description }}</p>
                     </div>
                 </div>
-                <div class="col-md-2 d-flex text-center align-items-center">
+                <div class="col-md-2 d-flex text-center align-items-start">
                     <div class="row">
                         {% if product.sell_price != product.price %}
                             <span class="badge btn-dark text-dark"> Скидка {{ product.discount }}%</span>

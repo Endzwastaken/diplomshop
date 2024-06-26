@@ -49,14 +49,14 @@ def registration(request):
             form.save()
 
             session_key = request.session.session_key
-
             user = form.instance
             auth.login(request, user)
 
             if session_key:
                 Cart.objects.filter(session_key=session_key).update(user=user)
 
-            messages.success(request, f'{user.username}, вы успешно зарегистрированы и вошли в аккаунт!')
+            messages.success(request, f'{user.username}, '
+                                      f'вы успешно зарегистрированы и вошли в аккаунт!')
             return HttpResponseRedirect(reverse('main:mainpage'))
     else:
         form = UserRegistrationForm()
@@ -70,7 +70,8 @@ def registration(request):
 @login_required
 def profile(request):
     if request.method == 'POST':
-        form = ProfileForm(data=request.POST, instance=request.user, files=request.FILES)
+        form = ProfileForm(data=request.POST, instance=request.user,
+                           files=request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, 'Профиль успешно обновлён!')
@@ -97,7 +98,8 @@ def profile(request):
 
 @login_required
 def logout(request):
-    messages.success(request, f'{request.user.username}, вы вышли из аккаунта!')
+    messages.success(request, f'{request.user.username}, '
+                              f'вы вышли из аккаунта!')
     auth.logout(request)
     return HttpResponseRedirect(reverse('main:mainpage'))
 

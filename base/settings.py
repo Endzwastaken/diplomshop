@@ -40,13 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'debug_toolbar',
+    #'debug_toolbar',
 
     'main',
     'catalog',
     'users',
     'carts',
-    'orders'
+    'orders',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'base.urls'
